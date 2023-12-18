@@ -1,0 +1,193 @@
+/* public/css/styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: lightgray;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+nav ul {
+    list-style-type: georgian;
+    margin:10px;
+    padding: 30px;
+}
+
+nav ul li {
+    display: inline-flex;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Add more styles as needed */
+ button {
+    background-color: orangered;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+ button:hover {
+    background-color: black;
+    color: #fff;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.Left_part {
+    text-align: left;
+    padding: 50px;
+}
+
+.Left_part h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.Left_part h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.Left_part p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.button {
+    background-color: orangered;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: black;
+    color: #fff;
+}
+
+.img {
+    text-align: center;
+    margin-left: 30px;
+    padding-left: 30px;
+}
+
+.middle_part {
+    padding: 50px;
+    text-align: right;
+}
+
+.middle_part h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.middle_part p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.middle_part img {
+    margin-top: 20px;
+}
+
+.middle_part button {
+    background-color: orangered;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.middle_part button:hover {
+    background-color: black;
+}
+
+.last_part {
+    padding: 50px;
+    text-align: center;
+}
+
+.last_part h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.last_part p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+.reviewRow:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.reviewRow:hover {
+    background-color: #e0e0e0;
+}
+
+p {
+    color: #555;
+}
+
+.reminder {
+    margin-top: 20px;
+    font-size: 16px;
+    background-color: orangered; /* Use the same color as your page */
+    padding: 10px;
+    border: 1px solid #ccc; /* Border for distinction */
+    border-radius: 5px; /* Rounded corners */
+}
