@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ $image->id }}</td>
                 <td>
-                    <img src="{{ asset($image->image_url) }}" alt="Image" width="200px" height="200px">
+                    <img src="{{ asset('storage/'.$image->image_url) }}" alt="Image" width="200px" height="200px">
                 </td>
                 @if(isset($imageDescriptions[$image->id]))
                     <td>{{ $imageDescriptions[$image->id]->category }}</td>

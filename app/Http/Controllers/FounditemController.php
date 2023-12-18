@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
+use App\Models\Image;
 use App\Models\Address;
 use App\Models\Category;
 use App\Models\FoundItem;
-use App\Models\Image;
-use App\Models\User;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class founditemController extends Controller
 {
@@ -47,12 +48,18 @@ class founditemController extends Controller
             'status' => 'required|string|max:255',
         ]);
 
-        dd($request->all()); 
+        // dd($request->all()); 
 
+        // $image = Image::create([
+        //     'image_url' => $request->file('image')->store('images')
+        // ]);
         
         // Store the image in the 'images' table
         $image = new Image;
-        $image->image_url = $request->file('image')->store('images');
+        $path = $request->file('image')->store('public/found-items');
+        $path = str_replace('public/', '', $path);
+        $image->image_url = $path;
+        
         $image->save();
         // Create a new FoundItem record
         $foundItem = new FoundItem;
@@ -64,6 +71,8 @@ class founditemController extends Controller
         $foundItem->image_id = $image->id; // Set the image_id foreign key
         $foundItem->save();
 
+        //TODO create description
+        // FounditemDescriptionController::store();
 
         // Redirect to the create page with a success message
         return redirect()->route('founditem.create')->with('success', 'Found item reported successfully!');

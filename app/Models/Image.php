@@ -12,6 +12,7 @@ class Image extends Model
     use HasFactory;
 
     protected $table = 'images';
+    protected $fillable = ['image_url'];
 
 
     public function lostItems(){
