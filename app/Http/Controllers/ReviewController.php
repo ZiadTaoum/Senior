@@ -17,7 +17,6 @@ class ReviewController extends Controller
 
         return view('reviews.index', compact('reviews'));
 
-        
     }
 
     /**

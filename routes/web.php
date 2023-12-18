@@ -33,7 +33,18 @@ Route::any('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/registration',[AuthController::class, 'registration'])->name('registration');
 Route::post('/registration',[AuthController::class, 'registrationPost'])->name('registration.post');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function () {
+
+
+
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::group(['middleware' => 'isAdmin'], function () {
+        Route::resource('/items',AdminController::class);
+
+    });
+});
+
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/report', [ReportController::class, 'index'])->name('report');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
@@ -47,12 +58,11 @@ Route::resource('/founditemdescription',FounditemDescriptionController::class);
 
 
 Route::resource('/lostitem',LostitemController::class);
-Route::resource('/items',AdminController::class);
 
 
 Route::get('/founditems', [AdminController::class, 'foundItems'])->name('foundItems');
 
-Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+// Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
 
 
 // Route::middleware(['auth'])->group(function () {
@@ -67,6 +77,6 @@ Route::middleware(['auth'])->group(function () {
 
    // Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     //Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
-    Route::resource('/reviews', ReviewController::class)->except(['index', 'create', 'store']);
+    Route::resource('/reviews', ReviewController::class); //->except(['index', 'create', 'store']);
 
 });

@@ -46,26 +46,33 @@
                     </select>
                 </div>
     
-    
-                 {{-- <div class="form-group">
-                    <label for="user">User</label>
-                    <select name="user_id" class="form-control" required>
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                        @endforeach
-                    </select>
-                </div>  --}}
-    
                  <div class="form-group">
                     <label for="status">Status</label>
                     <input type="text" name="status" class="form-control" required>
                 </div>
+
+                <h2>Description</h2>
+            
+                <div class="form-group">
+                    <label for="dateFound">Date Found</label>
+                    <input type="date" name="dateFound" class="form-control" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="Color">Color</label>
+                    <input type="text" name="Color" class="form-control" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="Model">Model</label>
+                    <input type="text" name="Model" class="form-control" required>
+                </div>
     
                 <button type="submit" class="btn btn-primary">Submit</button>
-    
+                
             </form>
     
-             <form method="POST" action="{{ route('founditemdescription.store') }}">
+             {{-- <form method="POST" action="{{ route('founditemdescription.store') }}">
                 @csrf
                 <h2>Description</h2>
             
@@ -85,7 +92,7 @@
                 </div>
     
                
-                </form> 
+                </form>  --}}
         </div> 
     </div>
     
