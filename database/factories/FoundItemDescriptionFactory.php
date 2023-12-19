@@ -18,7 +18,6 @@ class FoundItemDescriptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'category' => $this->faker->word,
             'dateFound' => $this->faker->date,
             'color' => $this->faker->colorName,
             'model' => $this->faker->year($max='now'),

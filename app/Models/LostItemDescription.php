@@ -10,7 +10,7 @@ class LostItemDescription extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['category','date_lost','color','model','lost_item_id'];
+    protected $fillable = ['date_lost','color','model','lost_item_id'];
 
     public function lostItem(){
         return $this->belongsTo(LostItem::class);

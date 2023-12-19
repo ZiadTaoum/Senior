@@ -68,7 +68,7 @@
                     <tr>
                         <td>{{ $lostItem->id }}</td>
                         <td>
-                            <img src="{{ asset($lostItem->image->image_url) }}" alt="Image" width="200px" height="200px">
+                            <img src="{{ asset('storage/'.$lostItem->image->image_url) }}" alt="Image" width="200px" height="200px">
                         </td>
                         @if(isset($lostItemDescriptions[$lostItem->id]))
                             <td>{{ $lostItemDescriptions[$lostItem->id]->category }}</td>
@@ -108,7 +108,7 @@
                     <tr>
                         <td>{{ $foundItem->id }}</td>
                         <td>
-                            <img src="{{ asset($foundItem->image->image_url) }}" alt="Image" width="200px" height="200px">
+                            <img src="{{ asset('storage/'.$foundItem->image->image_url) }}" alt="Image" width="200px" height="200px">
                         </td>
                         @if(isset($foundItemDescriptions[$foundItem->id]))
                             <td>{{ $foundItemDescriptions[$foundItem->id]->category }}</td>

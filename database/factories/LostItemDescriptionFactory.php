@@ -18,7 +18,6 @@ class LostItemDescriptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'category' => $this->faker->word,
             'date_lost' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
             'color' => $this->faker->colorName,
             'model' => $this->faker->year($max='now'),
