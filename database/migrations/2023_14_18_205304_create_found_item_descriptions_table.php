@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('found_item_descriptions', function (Blueprint $table) {
             $table->id();
-            $table->string('category');
             $table->date('dateFound');
             $table->string('color');
             $table->string('model');

@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('lost_item_descriptions', function (Blueprint $table) {
             $table->id();
-            $table->string('category');
             $table->date('date_lost');
             $table->string('color');
             $table->string('model');

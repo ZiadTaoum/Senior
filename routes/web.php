@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\APIController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -13,6 +16,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LostitemController;
 use App\Http\Controllers\FounditemController;
 use App\Http\Controllers\FounditemDescriptionController;
+use App\Mail\ItemFound;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +30,7 @@ use App\Http\Controllers\FounditemDescriptionController;
 */
 
 Route::get('/', function () {
+    Mail::to(User::find(1))->send(new ItemFound);
     return view('welcome');
 });
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
@@ -43,7 +48,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/report-lost-item', [HomeController::class, 'reportLostItem']);
     
     Route::resource('/founditem',FounditemController::class);
-    Route::resource('/founditemdescription',FounditemDescriptionController::class);
+    Route::resource('/founditemdescription',FounditemDescriptionController::class, ['parameters' => [
+        'create' => 'found_item_id'
+    ]]);
     
     Route::resource('/lostitem',LostitemController::class);
 
@@ -65,6 +72,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/admin/found-items/{id}', 'AdminController@destroyFoundItem')->name('admin.destroyFoundItem');
 
     });
+
+    Route::get('/getCategories', [APIController::class, 'getCategories'])->name('get-categories');
+    Route::get('/getAddresses', [APIController::class, 'getAddresses'])->name('get-addresses');
+    // Route::get('/searchCategory/{category}', [APIController::class, 'searchCategory'])->name('search-category');
 });
 
 

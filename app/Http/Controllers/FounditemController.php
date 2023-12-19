@@ -28,12 +28,9 @@ class founditemController extends Controller
     public function create()
     {
         $addresses = Address::all(); // Retrieve all addresses
-        $categories  = Category::all();
-        //$users  = User::all();
-        
-        $loggedInUser = Auth::user();
+        // $categories  = Category::all();        
 
-        return view('founditem.create', compact('addresses', 'categories','loggedInUser'));
+        return view('founditem.create', compact('addresses'));
     }
 
     /**
@@ -46,12 +43,7 @@ class founditemController extends Controller
             'item_name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'address_id' => 'required|exists:addresses,id',
-            'category_id' => 'required|exists:categories,id',
-            'user_id' => 'required|exists:users,id',
-            'status' => 'required|string|max:255',
-
-            //dd($request->all())
-
+            'category_id' => 'required|exists:categories,id'
         ]);
 
         // Store the image in the 'images' table
@@ -66,18 +58,16 @@ class founditemController extends Controller
         $foundItem->item_name = $request->input('item_name');
         $foundItem->address_id = $request->input('address_id');
         $foundItem->category_id = $request->input('category_id');
-        $foundItem->user_id = $request->input('user_id');
-        $foundItem->status = $request->input('status');
+        $foundItem->user_id = Auth::id();
+        $foundItem->status = 'lost';
         $foundItem->image_id = $image->id; // Set the image_id foreign key
         $foundItem->save();
 
         if ($request->input('submit_type') === 'first_form') {
             // Redirect to the route where the second form is displayed
-            return redirect()->route('founditemdescription.create');
+            return redirect()->route('founditemdescription.create', ['found_item_id' => $foundItem->id]);
         }
         
-        // Redirect to the create page with a success message
-        //return redirect()->route('report')->with('success', 'Found item reported successfully!');
     }
     
     /**
