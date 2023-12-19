@@ -11,7 +11,7 @@
 <body>
 
 </head>
-<div class="reminder">
+<div class="reminder" id="reminder">
     <p>
         Before you start, we recommend visiting our <a href="{{ url('/about') }}">About</a> page to learn more about our platform and safety guidelines.
     </p>
@@ -50,6 +50,18 @@
 
         <button onclick="window.location.href='{{ url('/reviews/create') }}'">Leave A Review</button>
     </div>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            var reminder = document.getElementById('reminder');
+    
+            reminder.addEventListener('click', function () {
+                // Toggle the visibility of the reminder by adding/removing the 'hidden' class
+                reminder.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
 

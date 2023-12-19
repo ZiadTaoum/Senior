@@ -14,7 +14,7 @@ header {
     padding: 10px 20px;
 }
 
-nav ul {
+/* nav ul {
     list-style-type: georgian;
     margin:10px;
     padding: 30px;
@@ -29,32 +29,12 @@ nav ul li a {
     text-decoration: none;
     color: #fff;
     font-weight: bold;
-}
+} */
 
 main {
     padding: 20px;
 }
 
-/* Add more styles as needed */
- button {
-    background-color: orangered;
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 18px;
-    border: none;
-    cursor: pointer;
-}
-
- button:hover {
-    background-color: black;
-    color: #fff;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-}
 
 .Left_part {
     text-align: left;
@@ -76,18 +56,22 @@ body {
     line-height: 1.5;
 }
 
-.button {
+
+button {
     background-color: orangered;
     color: #fff;
     padding: 10px 20px;
     font-size: 18px;
     border: none;
     cursor: pointer;
+    border-radius: 5px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
-.button:hover {
+button:hover {
     background-color: black;
     color: #fff;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
 }
 
 .img {
@@ -186,8 +170,77 @@ p {
 .reminder {
     margin-top: 20px;
     font-size: 16px;
-    background-color: orangered; /* Use the same color as your page */
+    background-color: orangered; 
     padding: 10px;
-    border: 1px solid #ccc; /* Border for distinction */
-    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #ccc; 
+    border-radius: 5px;     
 }
+
+
+.container {
+    background-color: darkgray;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: orangered;
+}
+
+.table {
+    background-color: #ffffff;
+}
+
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+input[type="text"] {
+    width: 200px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+

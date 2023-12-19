@@ -1,46 +1,39 @@
-
 @extends('layout')
 
 @section('title', 'Gallery')
 
 @section('content')
-<h1>Gallery</h1>
+<div class="container">
+    <h1>Gallery</h1>
 
+    <div class="row">
+        @forelse ($images as $image)
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('storage/'.$image->image_url) }}" class="card-img-top" alt="Image" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $image->id }}</h5>
+                        @if($image->lostItemDescription)
+                            <p>Category: {{ $image->lostItemDescription->category }}</p>
+                            <p>Date Lost: {{ $image->lostItemDescription->date_lost }}</p>
+                            <p>Color: {{ $image->lostItemDescription->color }}</p>
+                            <p>Model: {{ $image->lostItemDescription->model }}</p>
+                        @else
+                            <p>Category: N/A</p>
+                            <p>Date Lost: N/A</p>
+                            <p>Color: N/A</p>
+                            <p>Model: N/A</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @empty
+            <p>No images found.</p>
+        @endforelse
+    </div>
 
-<table border="10px">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Image</th>
-            <th>Category</th>
-            <th>Date Lost</th>
-            <th>Color</th>
-            <th>Model</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($images as $image)
-            <tr>
-                <td>{{ $image->id }}</td>
-                <td>
-                    <img src="{{ asset('storage/'.$image->image_url) }}" alt="Image" width="200px" height="200px">
-                </td>
-                @if(isset($imageDescriptions[$image->id]))
-                    <td>{{ $imageDescriptions[$image->id]->category }}</td>
-                    <td>{{ $imageDescriptions[$image->id]->date_lost }}</td>
-                    <td>{{ $imageDescriptions[$image->id]->color }}</td>
-                    <td>{{ $imageDescriptions[$image->id]->model }}</td>
-                @else
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                @endif
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-
-
-
+    <div class="d-flex justify-content-center">
+        {{ $images->links('pagination::bootstrap-5') }}
+    </div>
+</div>
 @endsection

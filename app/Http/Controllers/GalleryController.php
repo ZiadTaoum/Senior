@@ -19,18 +19,12 @@ class GalleryController extends Controller
 
     public function index()
     {
-        // Retrieve all images
-        $images = Image::all();
+        // Use pagination to limit the number of items per page
+        $images = Image::with('lostItemDescription')->paginate(5);
 
-        // Fetch the associated descriptions for each image
-        $imageDescriptions = [];
-        foreach ($images as $image) {
-            $description = LostItemDescription::where('lost_item_id', $image->id)->first();
-            $imageDescriptions[$image->id] = $description;
-        }
-
-        return view('gallery', ['images' => $images, 'imageDescriptions' => $imageDescriptions]);
+        return view('gallery', ['images' => $images]);
     }
+
     
     
     /**

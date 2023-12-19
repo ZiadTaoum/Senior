@@ -12,13 +12,12 @@ class ReviewController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $reviews = Review::with('user')->get();
+{
+    // Use pagination to limit the number of items per page
+    $reviews = Review::with('user')->paginate(10); // Adjust the number based on your preference
 
-        return view('reviews.index', compact('reviews'));
-
-    }
-
+    return view('reviews.index', compact('reviews'));
+}
     /**
      * Show the form for creating a new resource.
      */

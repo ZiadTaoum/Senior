@@ -17,5 +17,6 @@
 
             <button type="submit" class="btn btn-primary">Update Review</button>
         </form>
+        <a href="{{ route('reviews.index') }}" class="btn btn-secondary mt-3">Back </a>
     </div>
 @endsection

@@ -9,6 +9,7 @@ use App\Models\FoundItem;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class founditemController extends Controller
@@ -28,9 +29,11 @@ class founditemController extends Controller
     {
         $addresses = Address::all(); // Retrieve all addresses
         $categories  = Category::all();
-        $users  = User::all();
+        //$users  = User::all();
+        
+        $loggedInUser = Auth::user();
 
-        return view('founditem.create', compact('addresses', 'categories','users'));
+        return view('founditem.create', compact('addresses', 'categories','loggedInUser'));
     }
 
     /**
@@ -38,7 +41,7 @@ class founditemController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'item_name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -46,21 +49,18 @@ class founditemController extends Controller
             'category_id' => 'required|exists:categories,id',
             'user_id' => 'required|exists:users,id',
             'status' => 'required|string|max:255',
+
+            //dd($request->all())
+
         ]);
 
-        // dd($request->all()); 
-
-        // $image = Image::create([
-        //     'image_url' => $request->file('image')->store('images')
-        // ]);
-        
         // Store the image in the 'images' table
         $image = new Image;
         $path = $request->file('image')->store('public/found-items');
         $path = str_replace('public/', '', $path);
         $image->image_url = $path;
-        
         $image->save();
+        
         // Create a new FoundItem record
         $foundItem = new FoundItem;
         $foundItem->item_name = $request->input('item_name');
@@ -71,11 +71,13 @@ class founditemController extends Controller
         $foundItem->image_id = $image->id; // Set the image_id foreign key
         $foundItem->save();
 
-        //TODO create description
-        // FounditemDescriptionController::store();
-
+        if ($request->input('submit_type') === 'first_form') {
+            // Redirect to the route where the second form is displayed
+            return redirect()->route('founditemdescription.create');
+        }
+        
         // Redirect to the create page with a success message
-        return redirect()->route('founditem.create')->with('success', 'Found item reported successfully!');
+        //return redirect()->route('report')->with('success', 'Found item reported successfully!');
     }
     
     /**

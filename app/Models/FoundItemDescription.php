@@ -10,7 +10,7 @@ class FoundItemDescription extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['category','dateFound','Color','Model','found_item_id'];
+    protected $fillable = ['dateFound','Color','Model','found_item_id'];
 
     public function founditem(){
         return $this->belongsTo(FoundItem::class);

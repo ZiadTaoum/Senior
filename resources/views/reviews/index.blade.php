@@ -1,5 +1,3 @@
-<!-- resources/views/reviews/index.blade.php -->
-
 @extends('layout')
 <link rel="stylesheet" href="{{ asset('style.css') }}">
 @section('title', 'Reviews')
@@ -7,6 +5,7 @@
 @section('content')
     <div class="container">
         <h2>All Reviews</h2>
+        <button onclick="window.location.href='{{ url('/reviews/create') }}'">Add a Review</button>
 
         <!-- Search Bar -->
         <input type="text" id="searchInput" placeholder="Search by User">
@@ -17,7 +16,7 @@
                     <tr>
                         <th>User</th>
                         <th>Review Content</th>
-                        <th>Action</th>
+                        {{-- <th>Action</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -41,12 +40,17 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <!-- Pagination links -->
+            <div class="d-flex justify-content-center">
+                {{ $reviews->links('pagination::bootstrap-5') }}
+            </div>
+
         @else
             <p>No reviews available.</p>
         @endif
     </div>
 
-    <button onclick="window.location.href='{{ url('/reviews/create') }}'">Add a Review</button>
 
     <!-- AJAX Script -->
     <script>
