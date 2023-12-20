@@ -18,6 +18,8 @@ class ReviewController extends Controller
 
     return view('reviews.index', compact('reviews'));
 }
+
+
     /**
      * Show the form for creating a new resource.
      */

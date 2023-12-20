@@ -18,11 +18,11 @@
             <h2>Description</h2>
 
             <div class="form-group">
-                <label for="dateFound">Date Found</label>
-                <input type="date" name="dateFound" class="form-control" required>
+                <label for="dateFound">Date Lost</label>
+                <input type="date" name="dateLost" class="form-control" required>
             </div>
 
-             {{-- <input type="hidden" name="found_item_id" value="{{ $found_item_id }}">  --}}
+            {{-- <input type="hidden" name="lost_item_id" value="{{ $lost_item_id }}">  --}}
 
             <label for="Color">Color</label>
             <input type="text" name="Color" class="form-control" required>

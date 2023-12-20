@@ -48,9 +48,7 @@
 
                     <input type="hidden" name="submit_type" value="first_form">
                     <button type="submit" class="btn btn-primary">Submit</button>
-
                 </form>
-
 
             </div>
         </div>
@@ -93,31 +91,14 @@
 
                     <div class="form-group">
                         <label for="reward">Reward</label>
-                        <input type="number" name="reward" class="form-control" required>
+                        <input type="number" name="reward_description" class="form-control" required>
                     </div>
 
-                    <h2>Description</h2>
-
-                    <div class="form-group">
-                        <label for="dateFound">Date Found</label>
-                        <input type="date" name="dateFound" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Color">Color</label>
-                        <input type="text" name="Color" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Model">Model</label>
-                        <input type="text" name="Model" class="form-control" required>
-                    </div>
-
+                    <input type="hidden" name="submit_type" value="second_form">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
-        </div>
-
+                </div>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var switchFormButton = document.getElementById('switchFormButton');
@@ -146,10 +127,7 @@
                                 var category = "<option value=" + response.categories[i].id + ">" + response
                                     .categories[i].category_name + "</option>";
                                 $("#lost_item_categories").append(category);
-                                // var option = document.createElement('option');
-                                // option.value = response.categories[i].id;
-                                // option.innerHTML = response.categories[i].category_name;
-                                // document.getElementById('lost_item_categories').appendChild(option);
+                                
                                 $("#found_item_categories").append(category);
                             }
                         }
@@ -183,24 +161,6 @@
 
             });
 
-
-            // function searchCategory(cat) {
-            //     if (cat) {
-            //         $.ajax({
-            //             type: 'GET',
-            //             url: "{{ route('search-category', ':cat') }}".replace(':cat', cat),
-            //             success: function(response) {
-            //                 console.log('searching cat');
-            //                 console.log(response);
-
-            //             },
-            //             error: function(error) {
-            //                 console.error(error);
-            //             }
-            //         });
-            //     }
-
-            // }
         </script>
 
     </body>

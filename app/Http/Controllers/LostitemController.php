@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
+use App\Models\Image;
 use App\Models\Address;
 use App\Models\Category;
 use App\Models\LostItem;
-use App\Models\Image;
-use App\Models\User;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class lostitemController extends Controller
 {
@@ -26,52 +27,52 @@ class lostitemController extends Controller
     public function create()
     {
         $addresses = Address::all(); // Retrieve all addresses
-        $categories  = Category::all();
-        $users  = User::all();
+        // $categories  = Category::all();
+        // $users  = User::all();
 
-        return view('lostitem.create', compact('addresses', 'categories','users'));
+        return view('founditem.create', compact('addresses'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        
+
+     public function store(Request $request)
+     {
+ 
         $request->validate([
             'item_name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'address_id' => 'required|exists:addresses,id',
             'category_id' => 'required|exists:categories,id',
-            'user_id' => 'required|exists:users,id',
-            'status' => 'required|string|max:255',
-            'reward' => 'required|string|max:255',
+            'reward_description' => 'required|string|max:255',
         ]);
-
-        // dd($request->all()); 
-
-        // Store the image in the 'images' table
-        $image = new Image;
-        $path = $request->file('image')->store('public/lost-items');
-        $path = str_replace('public/', '', $path);
-        $image->image_url = $path;
-        
-        $image->save();
-        // Create a new LostItem record
-        $lostItem = new LostItem;
-        $lostItem->item_name = $request->input('item_name');
-        $lostItem->address_id = $request->input('address_id');
-        $lostItem->category_id = $request->input('category_id');
-        $lostItem->user_id = $request->input('user_id');
-        $lostItem->status = $request->input('status');
-        $lostItem->status = $request->input('reward');
-        $lostItem->image_id = $image->id; // Set the image_id foreign key
-        $lostItem->save();
-
-        
-        // Redirect to the create page with a success message
-        return redirect()->route('founditem.create')->with('success', 'Found item reported successfully!');
-    }
+ 
+         // Store the image in the 'images' table
+         $image = new Image;
+         $path = $request->file('image')->store('public/lost-items');
+         $path = str_replace('public/', '', $path);
+         $image->image_url = $path;
+         $image->save();
+         
+         // Create a new LostItem record
+         $lostItem = new LostItem;
+         $lostItem->item_name = $request->input('item_name');
+         $lostItem->address_id = $request->input('address_id');
+         $lostItem->category_id = $request->input('category_id');
+         $lostItem->reward_description = $request->input('reward_description');
+         $lostItem->user_id = Auth::id();
+         $lostItem->status = 'lost';
+         $lostItem->image_id = $image->id; // Set the image_id foreign key
+         $lostItem->save();
+ 
+         if ($request->input('submit_type') === 'second_form') {
+             // Redirect to the route where the second form is displayed
+             return redirect()->route('lostitemdescription.create', ['lost_item_id' => $lostItem->id]);
+         }
+         
+     }
+ 
     /**
      * Display the specified resource.
      */

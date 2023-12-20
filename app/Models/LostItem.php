@@ -16,7 +16,7 @@ class LostItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['item_name','status','user_id','image_id','address_id', 'category_id','reward'];
+    protected $fillable = ['item_name','status','user_id','image_id','address_id', 'category_id','reward_id'];
     protected $guarded = ['review_id'];
 
     public function user(){

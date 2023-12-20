@@ -81,9 +81,10 @@
                             <td>N/A</td>
                             <td>N/A</td>
                         @endif
-                    </tr>
+                        
                 @endforeach
             </tbody>
+            
         </table>
 
         {{ $lostItems->links('pagination::bootstrap-5') }}
@@ -121,6 +122,7 @@
                             <td>N/A</td>
                             <td>N/A</td>
                         @endif
+                        
                     </tr>
                 @endforeach
             </tbody>
