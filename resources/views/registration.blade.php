@@ -8,8 +8,10 @@
 </head>
 <body>
 
+  @include('components.alert')
+
   <div class="container">
-    <form action="{{route('registration.post')}}" method="POST">
+    <form action="{{route('registration-post')}}" method="POST">
       @csrf
       <div class="mb-3">
         <label class="form-label">Name</label>
@@ -29,7 +31,7 @@
       <button type="submit" class="btn btn-primary">Submit</button>
 
     </form>
-    <p class="mt-3">Already have an account? <a href="{{ route('login') }}">Login here</a></p>
+    <p class="mt-3">Already have an account? <a href="{{ url('/') }}">Login here</a></p>
 
   </div>
 

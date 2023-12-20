@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\AuthController;
@@ -17,7 +15,6 @@ use App\Http\Controllers\LostitemController;
 use App\Http\Controllers\FounditemController;
 use App\Http\Controllers\FounditemDescriptionController;
 use App\Http\Controllers\LostitemDescriptionController;
-use App\Mail\ItemFound;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,14 +28,16 @@ use App\Mail\ItemFound;
 */
 
 Route::get('/', function () {
+    // Mail::to(User::find(1))->send(new ItemFound(FoundItem::find(1)));
     return view('welcome');
 });
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::any('/login', [LoginController::class, 'login'])->name('login');
 
 Route::get('/registration',[AuthController::class, 'registration'])->name('registration');
-Route::post('/registration',[AuthController::class, 'registrationPost'])->name('registration.post');
+Route::post('/registration',[AuthController::class, 'registrationPost'])->name('registration-post');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -48,7 +47,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/report-lost-item', [HomeController::class, 'reportLostItem']);
     //
 
-    Route::resource('/founditem',FounditemController::class);
+    Route::resource('/founditem',FounditemController::class, ['parameters' => [
+        'show' => 'found_item_id'
+    ]]);
     Route::resource('/founditemdescription',FounditemDescriptionController::class, ['parameters' => [
         'create' => 'found_item_id'
     ]]);

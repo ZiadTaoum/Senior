@@ -6,8 +6,7 @@ use App\Models\Image;
 use App\Models\Address;
 use App\Models\Category;
 use App\Models\LostItem;
-
-
+use App\Models\Reward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,11 +25,7 @@ class lostitemController extends Controller
      */
     public function create()
     {
-        $addresses = Address::all(); // Retrieve all addresses
-        // $categories  = Category::all();
-        // $users  = User::all();
-
-        return view('founditem.create', compact('addresses'));
+        return view('founditem.create');
     }
 
     /**
@@ -54,13 +49,17 @@ class lostitemController extends Controller
          $path = str_replace('public/', '', $path);
          $image->image_url = $path;
          $image->save();
+
+         $reward = Reward::create([
+            'reward_description' => $request->get('reward_description')
+         ]);
          
          // Create a new LostItem record
          $lostItem = new LostItem;
          $lostItem->item_name = $request->input('item_name');
          $lostItem->address_id = $request->input('address_id');
          $lostItem->category_id = $request->input('category_id');
-         $lostItem->reward_description = $request->input('reward_description');
+         $lostItem->reward_id = $reward->id;
          $lostItem->user_id = Auth::id();
          $lostItem->status = 'lost';
          $lostItem->image_id = $image->id; // Set the image_id foreign key

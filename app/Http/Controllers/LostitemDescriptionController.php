@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\LostitemDescription;
+use App\Models\LostItemDescription;
 
 class LostitemDescriptionController extends Controller
 {
@@ -24,10 +24,10 @@ class LostitemDescriptionController extends Controller
             'lost_item_id' => 'required|exists:lost_items,id',
         ]);
 
-        $lostitemDescription = new LostitemDescription;
+        $lostitemDescription = new LostItemDescription;
         $lostitemDescription->date_lost = $request->input('date_lost');
         $lostitemDescription->model = $request->input('model');
-        $lostitemDescription->color = $request->input('Color');
+        $lostitemDescription->color = $request->input('color');
         $lostitemDescription->lost_item_id = $request->input('lost_item_id');
         $lostitemDescription->save();
 

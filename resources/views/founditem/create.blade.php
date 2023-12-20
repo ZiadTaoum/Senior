@@ -91,7 +91,7 @@
 
                     <div class="form-group">
                         <label for="reward">Reward</label>
-                        <input type="number" name="reward_description" class="form-control" required>
+                        <input type="text" name="reward_description" class="form-control" required>
                     </div>
 
                     <input type="hidden" name="submit_type" value="second_form">

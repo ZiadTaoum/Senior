@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -12,12 +13,12 @@ class ReviewController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    // Use pagination to limit the number of items per page
-    $reviews = Review::with('user')->paginate(10); // Adjust the number based on your preference
+    {
+        // Use pagination to limit the number of items per page
+        $reviews = Review::with('user')->paginate(10); // Adjust the number based on your preference
 
-    return view('reviews.index', compact('reviews'));
-}
+        return view('reviews.index', compact('reviews'));
+    }
 
 
     /**
@@ -34,22 +35,22 @@ class ReviewController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'review_content' => 'required|string',
-    ]);
+    {
+        $request->validate([
+            'review_content' => 'required|string',
+        ]);
 
-    // Get the currently authenticated user
-    $user = Auth::user();
+        // Get the currently authenticated user
+        $user = Auth::user();
 
-    // Create a new Review record associated with the user
-    $user->reviews()->create([
-        'review_content' => $request->input('review_content'),
-    ]);
+        // Create a new Review record associated with the user
+        $user->reviews()->create([
+            'review_content' => $request->input('review_content'),
+        ]);
 
-    // Redirect to the index page with a success message
-    return redirect()->route('reviews.index')->with('success', 'Review added successfully!');
-}
+        // Redirect to the index page with a success message
+        return redirect()->route('reviews.index')->with('success', 'Review added successfully!');
+    }
 
 
     /**
@@ -91,5 +92,4 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      */
-
 }

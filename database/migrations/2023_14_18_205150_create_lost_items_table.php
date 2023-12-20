@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('address_id'); 
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('review_id')->nullable();;
-            $table->unsignedBigInteger('reward_description');
+            $table->unsignedBigInteger('reward_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('address_id')->references('id')->on('addresses');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('review_id')->references('id')->on('reviews');
-            $table->foreign('reward_description')->references('id')->on('rewards');
+            $table->foreign('reward_id')->references('id')->on('rewards');
         });
     }
 
