@@ -27,10 +27,7 @@ class founditemController extends Controller
      */
     public function create()
     {
-        $addresses = Address::all(); // Retrieve all addresses
-        // $categories  = Category::all();        
-
-        return view('founditem.create', compact('addresses'));
+        return view('founditem.create');
     }
 
     /**

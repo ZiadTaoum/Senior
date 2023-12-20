@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\FoundItem;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,12 +14,14 @@ class ItemFound extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private FoundItem $item;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(FoundItem $item)
     {
-        //
+        $this->item = $item;
     }
 
     /**
@@ -37,7 +40,10 @@ class ItemFound extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.index',
+            markdown: 'mail.index',
+            with: [
+                'url' => route('founditem.show', $this->item->id),
+            ],
         );
     }
 

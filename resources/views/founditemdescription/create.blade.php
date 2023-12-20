@@ -22,7 +22,7 @@
                 <input type="date" name="dateFound" class="form-control" required>
             </div>
 
-             {{-- <input type="hidden" name="found_item_id" value="{{ $found_item_id }}">  --}}
+             <input type="hidden" name="found_item_id" value="{{ $found_item_id }}"> 
 
             <label for="Color">Color</label>
             <input type="text" name="Color" class="form-control" required>

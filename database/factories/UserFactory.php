@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use App\Models\Team;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -28,7 +29,9 @@ class UserFactory extends Factory
             // 'two_factor_secret' => null,
             // 'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),
-            'role_id' => 1,
+            'role_id' => function(){
+                return Role::all()->random(); 
+            },
         ];
     }
 

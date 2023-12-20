@@ -42,7 +42,7 @@ class LostItemFactory extends Factory
             'review_id' => function(){
                 return Review::all()->random();
             },
-            'reward_description' => function(){
+            'reward_id' => function(){
                 return Reward::all()->random();
             },
         ];
