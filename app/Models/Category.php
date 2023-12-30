@@ -20,4 +20,11 @@ class Category extends Model
     public function foundItems(){
         return $this->hasMany(FoundItem::class);
     }
+
+    public function match(Category $anotherCategory){
+        if($this->category_name == $anotherCategory->category_name){
+            return true;
+        }
+        return false;
+    }
 }

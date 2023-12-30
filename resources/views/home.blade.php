@@ -13,7 +13,9 @@
 
 @php
     // Check if the reminder has already been displayed
+    // $reminderDisplayed = cookie()->has('reminder_displayed');
     $reminderDisplayed = isset($_COOKIE['reminder_displayed']);
+    // Auth::id()
 @endphp
 
 @if(!$reminderDisplayed)

@@ -8,6 +8,7 @@ use App\Models\Review;
 use App\Models\Reward;
 use App\Models\Address;
 use App\Models\Category;
+use App\Models\FoundItem;
 use App\Models\LostItemDescription;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,5 +40,9 @@ class LostItem extends Model
     }
     public function lostItemDescriptions(){
         return $this->hasMany(LostItemDescription::class);
+    }
+
+    public function foundItems(){
+        return $this->belongsToMany(FoundItem::class, 'lost_found_items', 'lost_item_id', 'found_item_id');
     }
 }
