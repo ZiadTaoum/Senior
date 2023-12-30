@@ -1,3 +1,5 @@
+@include('components.alert')
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
@@ -13,8 +14,9 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LostitemController;
 use App\Http\Controllers\FounditemController;
-use App\Http\Controllers\FounditemDescriptionController;
+use App\Http\Controllers\CompareitemsController;
 use App\Http\Controllers\LostitemDescriptionController;
+use App\Http\Controllers\FounditemDescriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,9 @@ Route::get('/', function () {
     // Mail::to(User::find(1))->send(new ItemFound(FoundItem::find(1)));
     return view('welcome');
 });
+
+// Route::get('/send-test-email', [TestController::class, 'sendTestEmail'])->name('send.test.email');
+
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
@@ -73,9 +78,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'isAdmin'], function () { //only admin can access
         Route::resource('/items',AdminController::class);
         
-        Route::resource('/adminReview',ReviewController::class);
+        // Route::resource('/adminReview',ReviewController::class);
 
-
+        Route::resource('/compare_items', CompareitemsController::class);
+        Route::get('/compare-items', [CompareitemsController::class, 'compareItemsDescriptions']);
     });
 
     Route::get('/getCategories', [APIController::class, 'getCategories'])->name('get-categories');

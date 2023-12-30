@@ -15,4 +15,6 @@ class LostItemDescription extends Model
     public function lostItem(){
         return $this->belongsTo(LostItem::class);
     }
+
+    
 }

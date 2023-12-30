@@ -13,7 +13,7 @@
                 <thead>
                     <tr>
                         <th>User</th>
-                        <th>Review Content</th>
+                        <th>Review Contentttt</th>
                         {{-- <th>Action</th> --}}
                     </tr>
                 </thead>

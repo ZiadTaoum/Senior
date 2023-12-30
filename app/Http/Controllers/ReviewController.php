@@ -14,8 +14,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        // Use pagination to limit the number of items per page
-        $reviews = Review::with('user')->paginate(10); // Adjust the number based on your preference
+
+        $reviews = Review::with('user')->paginate(10); 
 
         return view('reviews.index', compact('reviews'));
     }

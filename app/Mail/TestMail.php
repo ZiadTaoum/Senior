@@ -2,24 +2,22 @@
 
 namespace App\Mail;
 
-use App\Models\FoundItem;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Attachment;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ItemFound extends Mailable
+
+class TestMail extends Mailable
 {
     use Queueable, SerializesModels;
-
-        // private FoundItem $item;
 
     /**
      * Create a new message instance.
      */
-
     public $subject, $body;
     public function __construct($subject, $body)
     {
@@ -46,10 +44,11 @@ class ItemFound extends Mailable
         return new Content(
             markdown: 'mail.index',
             with: [
-                'url' => route('founditem.show'),
+                'url' => route('founditem.create'),
             ],
         );
     }
+
 
     /**
      * Get the attachments for the message.
@@ -58,6 +57,8 @@ class ItemFound extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromPath('images/aaaa.png'),
+        ];
     }
 }

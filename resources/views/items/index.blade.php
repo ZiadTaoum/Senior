@@ -1,135 +1,73 @@
+<!-- resources/views/example/index.blade.php -->
 @extends('adminLayout')
-
-@section('title', 'ADMIN')
 
 @section('content')
 
 <style>
-    .table-container {
-        display: flex;
-        overflow-x: auto;
+    .item-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
     }
 
-    .lost,
-    .found {
+    .item-card {
         border: 1px solid #ccc;
-        padding: 20px;
         border-radius: 8px;
-        margin-right: 20px;
-        flex: 0 0 auto; /* Prevent items from growing to fill free space */
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    .found {
-        margin-right: 0;
+    .item-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-bottom: 10px;
     }
 
-    .pagination {
-        margin-top: 20px;
-        display: flex;
-        list-style: none;
-        padding: 0;
-    }
-
-    .pagination li {
-        margin-right: 10px;
-    }
-
-    .pagination a {
-        text-decoration: none;
-        padding: 5px 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        color: #333;
-    }
-
-    .pagination .active a {
-        background-color: #007bff;
-        color: #fff;
+    .item-details {
+        font-size: 14px;
     }
 </style>
+    <h1>Lost Items</h1>
 
-<div class="table-container">
-    <div class="lost">
-        <h1>Lost items</h1>
-
-        <table border="10px">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Image</th>
-                    <th>Category</th>
-                    <th>Date Lost</th>
-                    <th>Color</th>
-                    <th>Model</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($lostItems as $lostItem)
-                    <tr>
-                        <td>{{ $lostItem->id }}</td>
-                        <td>
-                            <img src="{{ asset('storage/'.$lostItem->image->image_url) }}" alt="Image" width="200px" height="200px">
-                        </td>
-                        @if(isset($lostItemDescriptions[$lostItem->id]))
-                            <td>{{ $lostItemDescriptions[$lostItem->id]->category }}</td>
-                            <td>{{ $lostItemDescriptions[$lostItem->id]->date_lost }}</td>
-                            <td>{{ $lostItemDescriptions[$lostItem->id]->color }}</td>
-                            <td>{{ $lostItemDescriptions[$lostItem->id]->model }}</td>
-                        @else
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                        @endif
-                        
-                @endforeach
-            </tbody>
-            
-        </table>
-
-        {{ $lostItems->links('pagination::bootstrap-5') }}
+    <div class="item-grid">
+        @foreach ($lostItems as $lostItem)
+            <div class="item-card">
+                <img src="{{ asset('storage/'.$lostItem->image->image_url) }}" alt="Image" class="item-image">
+                <div class="item-details">
+                    <p><strong>ID:</strong> {{ $lostItem->id }}</p>
+                    <p><strong>Item Name:</strong> {{ $lostItem->item_name }}</p>
+                    <p><strong>Status:</strong> {{ $lostItem->status }}</p>
+                    <p><strong>User:</strong> {{ $lostItem->user->name }}</p>
+                    <p><strong>Address:</strong> {{ $lostItem->address->city }}</p>
+                    <p><strong>Category:</strong> {{ $lostItem->category->category_name }}</p>
+                    <p><strong>Reward:</strong> {{ $lostItem->reward ? $lostItem->reward->reward_description : 'N/A' }}</p>
+                </div>
+            </div>
+        @endforeach
     </div>
 
-    <div class="found">
-        <h1>Found items</h1>
+    {{ $lostItems->links('pagination::bootstrap-5') }}
 
-        <table border="10px">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Image</th>
-                    <th>Category</th>
-                    <th>Date Found</th>
-                    <th>Color</th>
-                    <th>Model</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($foundItems as $foundItem)
-                    <tr>
-                        <td>{{ $foundItem->id }}</td>
-                        <td>
-                            <img src="{{ asset('storage/'.$foundItem->image->image_url) }}" alt="Image" width="200px" height="200px">
-                        </td>
-                        @if(isset($foundItemDescriptions[$foundItem->id]))
-                            <td>{{ $foundItemDescriptions[$foundItem->id]->category }}</td>
-                            <td>{{ $foundItemDescriptions[$foundItem->id]->date_found }}</td>
-                            <td>{{ $foundItemDescriptions[$foundItem->id]->color }}</td>
-                            <td>{{ $foundItemDescriptions[$foundItem->id]->model }}</td>
-                        @else
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                        @endif
-                        
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <h1>Found Items</h1>
 
-        {{ $foundItems->links('pagination::bootstrap-5') }}
+    <div class="item-grid">
+        @foreach ($foundItems as $foundItem)
+            <div class="item-card">
+                <img src="{{ asset('storage/'.$foundItem->image->image_url) }}" alt="Image" class="item-image">
+                <div class="item-details">
+                    <p><strong>ID:</strong> {{ $foundItem->id }}</p>
+                    <p><strong>Item Name:</strong> {{ $foundItem->item_name }}</p>
+                    <p><strong>Status:</strong> {{ $foundItem->status }}</p>
+                    <p><strong>User:</strong> {{ $foundItem->user->name }}</p>
+                    <p><strong>Address:</strong> {{ $foundItem->address->city }}</p>
+                    <p><strong>Category:</strong> {{ $foundItem->category->category_name }}</p>
+                </div>
+            </div>
+        @endforeach
     </div>
-</div>
 
+    {{ $foundItems->links('pagination::bootstrap-5') }}
 @endsection

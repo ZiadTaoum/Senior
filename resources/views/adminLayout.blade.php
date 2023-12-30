@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Add your CSS stylesheets or CDN links here -->
     
 </head>
 <body>
@@ -15,11 +14,19 @@
     <header>
         <nav>
             <ul>
+            <li>Admin</li>
             <li><a href="{{ route('items.index') }}">Items</a></li>
-                 <li><a href="{{ route('adminReview.index') }}">Reviews</a></li>
-               {{-- <li><a href="{{ route('report') }}">Report</a></li>
+            <li><a href="{{ route('compare_items.index') }}">Compare</a></li>
                 <li><a href="{{ route('reviews.index') }}">Reviews</a></li>
-                <li><a href="{{ route('gallery') }}">Gallery</a></li> --}}
+                {{-- <li><a href="{{ route('gallery') }}">Gallery</a></li> --}}
+            </ul>
+            <ul class="logout">
+                <li>
+                    <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                       Logout
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -28,7 +35,6 @@
     <div>
         @yield('content')
     </div>
-    <!-- Add your JavaScript scripts or CDN links here -->
 
 </body>
 </html>

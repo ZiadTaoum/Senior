@@ -26,7 +26,7 @@
                             <td>{{ $review->review_content }}</td>
                             <td>
                                 @if (auth()->user()->id === $review->user->id || auth()->user()->role->name == 'admin')
-                                    <a href="{{ route('reviews.edit', $review) }}" class="btn btn-primary">Edit</a>
+             //TODO active inactive                        <a href="{{ route('reviews.edit', $review) }}" class="btn btn-primary">Edit</a>
                                     <form method="post" action="{{ route('reviews.destroy', $review) }}" style="display:inline;">
                                         @csrf
                                         @method('delete')

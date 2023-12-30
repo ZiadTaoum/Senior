@@ -3,67 +3,75 @@
 @section('title', 'Home')
 
 @section('content')
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+</head>
 <body>
 
-</head>
-<div class="reminder" id="reminder">
-    <p>
-        Before you start, we recommend visiting our <a href="{{ url('/about') }}">About</a> page to learn more about our platform and safety guidelines.
-    </p>
+@php
+    // Check if the reminder has already been displayed
+    $reminderDisplayed = isset($_COOKIE['reminder_displayed']);
+@endphp
+
+@if(!$reminderDisplayed)
+    <div class="reminder" id="reminder">
+        <p>
+            Hey there! 🌟 Ready to embark on a journey with us? Before you dive in, we recommend checking out our <a href="{{ url('/about') }}">About</a> page. It's packed with info about our platform and some essential safety guidelines.
+        </p>
+    </div>
+
+    @php
+        // Set a cookie to indicate that the reminder has been displayed
+        setcookie('reminder_displayed', 'true', time() + (10 * 365 * 24 * 60 * 60)); // 10 years expiration
+    @endphp
+@endif
+
+<div class="Left_part">
+    <h2>FOUND!</h2>
+    <h4>Your items are lost, but not forgotten</h4>
+    <p>Hey there! Today's the day we make finding your missing items a breeze. Let's kick off your search!</p>
+
+    <button class="button" onclick="window.location.href='{{ url('/report') }}'">Start Your Search</button>
+
+    <div class="img">
+        <img src="{{ asset('images/aaaa.png') }}" alt="LAF-logo" width=200px height=200px >    
+    </div>
 </div>
 
-    <div class="Left_part">
-        <h2>FOUND!</h2>
-        <h4>Your items are lost, but not forgotten</h4>
-        <p>Searching for your missing items made easier today</p>
+<div class="middle_part">
+    <h4>What’s better than a reunion with your stuff? </h4>
+    <p>
+        Absolutely nothing! So why wait? Embark on your searching journey, and guess what? We're right there with you, ready to guide you every step of the way.
+    </p>
 
-        <button class="button" onclick="window.location.href='{{ url('/report') }}'">Start Your Search</button>
+    <img src="{{ asset('images/aaaa.png') }}" alt="LAF-logo" width=200px height=200px >    
 
-        <div class="img">
-            <img src="{{ asset('images\aaaa.png') }}" alt="LAF-logo" width=200px height=200px >    
-        </div>
-    </div>
+    <button onclick="window.location.href='{{ url('/founditem/create') }}'">Report a Found Item</button>
+</div>
 
-    <div class="middle_part">
-        <h4>What’s better than a reunion with your stuff? </h4>
-        <p>
-            Nothing, so what are you waiting for, start your searching journey, and we will be there for you, giving you directions to reach your goal.
-        </p>
+<div class="last_part">
+    <h3>What once was lost, now is found </h3>
+    <p>
+        Your adventure matters to us! Don't keep it to yourself—share your experience by leaving a review. We're all ears and thrilled to hear your unique story!
+    </p>
 
-        <img src="{{ asset('images\aaaa.png') }}" alt="LAF-logo" width=200px height=200px >    
+    <button onclick="window.location.href='{{ url('/reviews/create') }}'">Leave A Review</button>
+</div>
 
-        <button onclick="window.location.href='{{ url('/founditem/create') }}'">Report a Found Item</button>
-
-        
-    </div>
-
-    <div class="last_part">
-        <h3>What once was lost, now is found </h3>
-        <p>
-            But it’s also important to tell us more about your experience here, so we recommend leaving feedback concerning your adventure!
-        </p>
-
-        <button onclick="window.location.href='{{ url('/reviews/create') }}'">Leave A Review</button>
-    </div>
-
-    <script>
-        
-        document.addEventListener('DOMContentLoaded', function () {
-            var reminder = document.getElementById('reminder');
-    
-            reminder.addEventListener('click', function () {
-                // Toggle the visibility of the reminder by adding/removing the 'hidden' class
-                reminder.classList.add('hidden');
-            });
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var reminder = document.getElementById('reminder');
+        reminder.addEventListener('click', function () {
+            // Toggle the visibility of the reminder by adding/removing the 'hidden' class
+            reminder.classList.add('hidden');
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
 
 @endsection
-

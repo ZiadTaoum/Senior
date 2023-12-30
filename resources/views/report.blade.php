@@ -4,7 +4,6 @@
 
 @section('content')
 
-    @include('components.alert')
 
     <div class="report">
         <h1>Report a Found or Lost Item</h1>

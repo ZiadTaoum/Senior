@@ -2,29 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Image;
-use App\Models\LostItemDescription;
+use App\Models\foundItem;
+use Illuminate\Http\Request;
+use App\Models\foundItemDescription;
+
 class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    // public function index()
-    // {
-    //     $images = Image::with('lostItemDescription')->get();
-    //     // $images = Image::all();
-    //     return view('gallery', ['images' => $images]);
-    // }
-
     public function index()
-    {
-        // Use pagination to limit the number of items per page
-        $images = Image::with('lostItemDescription')->paginate(5);
+{
+    // Use pagination to limit the number of items per page
+    $foundItems = foundItem::paginate(10);  
 
-        return view('gallery', ['images' => $images]);
-    }
+    return view('gallery', ['foundItems' => $foundItems]);
 
+}
     
     
     /**

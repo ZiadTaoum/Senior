@@ -7,76 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="style.css">
+    @include('components.alert')
+
     <!-- Add your CSS stylesheets or CDN links here -->
     <style>
-        /* Add your custom styles here */
-
-
         body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: lightgray;
-}
+            margin: 0; /* Remove default body margin */
+        }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: #fff;
-    padding: 30px 20px; /* Increased padding for better spacing */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #333; /* Add background color for the header */
+        }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
 
-nav ul li {
-    margin-right: 20px;
-}
+        .navbar-logo {
+            margin-right: auto; /* Push the logo to the left */
+        }
 
-nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    font-size: 16px; /* Increased font size */
-    padding: 12px 15px; /* Increased padding for better spacing */
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
+        nav ul li {
+            margin-right: 20px;
+        }
 
-nav ul li a:hover {
-    background-color: #555;
-}
+        .logout {
+            margin-left: 200%   ; /* Push the logout button to the right */
+        }
 
-.logout {
-    margin-left: 260%; /* Push the logout button to the right */
-}
-
-.logout a {
-    padding: 12px 15px; /* Increased padding for better spacing */
-    border-radius: 5px;
-    background-color: orangered;
-    color: #fff;
-    text-decoration: none;
-    transition: background-color 1s;
-}
-
-.logout a:hover {
-    background-color: black;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
+        .logout a {
+            color: #fff; /* Change the color of the logout link */
+        }
     </style>
 </head>
 <body>
@@ -84,6 +53,11 @@ nav ul li a:hover {
     <header>
         <nav>
             <ul>
+                <li class="navbar-logo">
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" width="100px" height="100px" style="border-radius: 10px;">
+                    </a>
+                </li>
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('about') }}">About</a></li>
                 <li><a href="{{ route('report') }}">Report</a></li>

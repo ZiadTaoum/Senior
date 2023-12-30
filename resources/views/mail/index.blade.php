@@ -1,3 +1,4 @@
+{!! $body !!}
 <x-mail::message>
 # Item found
  
