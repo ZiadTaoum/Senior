@@ -113,3 +113,7 @@ Route::group(['middleware' => 'auth'], function () {
      //->except(['index', 'create', 'store']);
 
 // });
+
+//TODO: for admin page, LostFoundItem::where('admin_checked', false)->get() | show this list to admin with two buttons (confirm match, unconfirm)
+// if admin presses confirm: send email to user and change the columns 'admin_checked' to true and 'email_sent' to true
+// if admin presses unconfirm, change 'admin_checked' to true (this way, it will not show in the list again)

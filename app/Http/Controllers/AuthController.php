@@ -51,7 +51,9 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect(route('home'))->with('success', 'registration success ');
+        Session::put('success', 'registration success ');
+
+        return redirect(route('home'));
     }
 
     public function logout()

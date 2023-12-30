@@ -16,6 +16,7 @@ use App\Models\Notification;
 use Illuminate\Database\Seeder;
 use App\Models\LostItemDescription;
 use App\Models\FoundItemDescription;
+use App\Models\LostFoundItem;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -56,6 +57,29 @@ class DatabaseSeeder extends Seeder
                 'found_item_id' => $found_item->id
             ]);
         }
+
+        LostFoundItem::factory(50)->create();
+
+        $my_address = Address::factory()->create();
+        $my_category = Category::factory()->create();
+        $my_lost_item = LostItem::factory()->create([
+            'address_id' => $my_address->id,
+            'category_id' => $my_category->id
+        ]);
+        $my_found_item = FoundItem::factory()->create([
+            'address_id' => $my_address->id,
+            'category_id' => $my_category->id
+        ]);
+        LostItemDescription::factory()->create([
+            'color' => 'black',
+            'model' => 1990,
+            'lost_item_id' => $my_lost_item->id
+        ]);
+        FoundItemDescription::factory()->create([
+            'color' => 'black',
+            'model' => 1990,
+            'found_item_id' => $my_found_item->id
+        ]);
     
         User::create([
             'name' => 'Admin',

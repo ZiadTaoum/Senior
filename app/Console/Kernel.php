@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('app:compare-items')->dailyAt('4:00')->appendOutputTo(storage_path('logs/compare-items.log'));
     }
 
     /**

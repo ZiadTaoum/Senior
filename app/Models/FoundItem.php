@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Image;
 use App\Models\Address;
 use App\Models\Category;
+use App\Models\LostItem;
 use App\Models\FoundItemDescription;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,6 +31,10 @@ class FoundItem extends Model
     }
     public function foundItemDescriptions(){
         return $this->hasMany(FoundItemDescription::class);
+    }
+
+    public function lostItems(){
+        return $this->belongsToMany(LostItem::class, 'lost_found_items', 'found_item_id', 'lost_item_id');
     }
 }
 

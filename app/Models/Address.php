@@ -24,4 +24,15 @@ class Address extends Model
     public function foundItems(){
         return $this->hasMany(FoundItem::class);
     }
+
+    public function match(Address $anotherAddress){
+        if($this->city == $anotherAddress->city){
+            if($this->governorate == $anotherAddress->governorate){
+                if($this->street == $anotherAddress->street){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
