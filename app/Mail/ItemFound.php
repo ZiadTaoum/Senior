@@ -20,11 +20,14 @@ class ItemFound extends Mailable
      * Create a new message instance.
      */
 
-    public $subject, $body;
-    public function __construct($subject, $body)
+    public $subject, $body, $finderEmail;
+    
+    public function __construct($subject, $body, $finderEmail)
     {
         $this->subject = $subject;
-        $this->body = $body;    
+        $this->body = $body;
+        $this->finderEmail = $finderEmail;    
+    
     
     }
 
@@ -45,9 +48,9 @@ class ItemFound extends Mailable
     {
         return new Content(
             markdown: 'mail.index',
-            with: [
-                'url' => route('founditem.show'),
-            ],
+            // with: [
+            //     'url' => route('founditem.show'),
+            // ],
         );
     }
 

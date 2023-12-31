@@ -42,10 +42,10 @@ class TestMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.index',
-            with: [
-                'url' => route('founditem.create'),
-            ],
+            markdown: 'mail.welcome',
+            // with: [
+            //     'url' => route('founditem.create'),
+            // ],
         );
     }
 
@@ -58,7 +58,7 @@ class TestMail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromPath('images/aaaa.png'),
+            // Attachment::fromPath('images/logo.png'),
         ];
     }
 }

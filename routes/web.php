@@ -78,10 +78,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'isAdmin'], function () { //only admin can access
         Route::resource('/items',AdminController::class);
         
-        // Route::resource('/adminReview',ReviewController::class);
+        Route::get('/admiReview', [AdminController::class, 'adminReviewIndex'])->name('admin.reviews.index');
+        Route::get('/admiReview/edit/{review}', [AdminController::class, 'adminEditReview'])->name('admin.reviews.edit');
+        Route::put('/admiReview/update/{review}', [AdminController::class, 'adminUpdateReview'])->name('admin.reviews.update');
+        Route::delete('/admiReview/destroy/{review}', [AdminController::class, 'adminDestroyReview'])->name('admin.reviews.destroy');
 
-        Route::resource('/compare_items', CompareitemsController::class);
-        Route::get('/compare-items', [CompareitemsController::class, 'compareItemsDescriptions']);
+        Route::get('/admin/reviews', [AdminController::class, 'adminReviewIndex'])->name('adminReview.index');
+
+        Route::get('/compare_items', [CompareItemsController::class, 'index'])->name('compare_items.index');
+        Route::post('/compare_items/confirm/{lostFoundItem}', [CompareItemsController::class, 'confirm'])->name('compare_items.confirm');
+        Route::post('/compare_items/unconfirm/{lostFoundItem}', [CompareItemsController::class, 'unconfirm'])->name('compare_items.unconfirm');
+        // Route::resource('/compare_items', CompareitemsController::class);
+        // Route::get('/compare-items', [CompareitemsController::class, 'compareItemsDescriptions']);
     });
 
     Route::get('/getCategories', [APIController::class, 'getCategories'])->name('get-categories');

@@ -17,7 +17,7 @@
             <li>Admin</li>
             <li><a href="{{ route('items.index') }}">Items</a></li>
             <li><a href="{{ route('compare_items.index') }}">Compare</a></li>
-                <li><a href="{{ route('reviews.index') }}">Reviews</a></li>
+                <li><a href="{{ route('adminReview.index') }}">Reviews</a></li>
                 {{-- <li><a href="{{ route('gallery') }}">Gallery</a></li> --}}
             </ul>
             <ul class="logout">
@@ -28,6 +28,10 @@
                     </a>
                 </li>
             </ul>
+            <!-- Add a form for logout with CSRF protection -->
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </nav>
     </header>
 

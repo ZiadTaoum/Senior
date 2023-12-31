@@ -2,67 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestMail;
+use App\Mail\ItemFound;
 use App\Models\LostItem;
 use App\Models\FoundItem;
 use Illuminate\Http\Request;
+use App\Models\LostFoundItem;
 use App\Models\LostItemDescription;
 use Illuminate\Support\Facades\Log;
 use App\Models\FoundItemDescription;
+use Illuminate\Support\Facades\Mail;
+
 
 class CompareitemsController extends Controller
 {
     public function index()
-{
-    // Your logic for the index page
-    return view('compare_items.index');
-}
+    {
+        // Retrieve unchecked items from LostFoundItem
+        $uncheckedItems = LostFoundItem::where('admin_checked', false)->paginate(10);
 
-
-public function compareItemsDescriptions()
-{
-    $lostItems = LostItem::with('lostItemDescription')->get();
-    $foundItems = FoundItem::with('foundItemDescription')->get();
-    $matchedItems = [];
-
-    foreach ($lostItems as $lostItem) {
-        foreach ($foundItems as $foundItem) {
-            if ($this->areItemsPotentialMatches($lostItem, $foundItem)) {
-                Log::info("Potential match found! Lost Item ID: {$lostItem->id}, Found Item ID: {$foundItem->id}");
-
-                $matchedItems[] = [
-                    'lost_item' => $lostItem,
-                    'found_item' => $foundItem,
-                ];
-
-                $this->sendNotification($lostItem, $foundItem);
-            }
-        }
+        return view('compare_items.index', ['uncheckedItems' => $uncheckedItems]);
     }
 
-    return view('compare_items.index', compact('matchedItems'));
-}
-private function areItemsPotentialMatches($lostItem, $foundItem)
-{
-    // Check if descriptions exist
-    if (!$lostItem->lostItemDescription || !$foundItem->foundItemDescription) {
-        return false;
+
+    public function confirm(LostFoundItem $lostFoundItem)
+    {
+        // Send email to user
+        $finderEmail = $lostFoundItem->foundItem->user->email;
+        $userEmail = $lostFoundItem->lostItem->user->email;
+        $subject = 'Item Found';
+        $body = 'Your item has been found';
+        Mail::to($userEmail)->send(new ItemFound($subject, $body, $finderEmail));
+
+
+        // Update columns
+        $lostFoundItem->update([
+            'admin_checked' => true,
+            'email_sent' => true,
+        ]);
+
+        return redirect()->route('compare_items.index')->with('success', 'Item confirmed successfully.');
     }
 
-    // Compare each attribute of the descriptions
+    public function unconfirm(LostFoundItem $lostFoundItem)
+    {
+        // Update column
+        $lostFoundItem->update(['admin_checked' => true]);
 
-    // Example: Compare date_lost
-    $dateLostMatch = $lostItem->lostItemDescription->date_lost == $foundItem->foundItemDescription->dateFound;
-
-    // Example: Compare color
-    $colorMatch = $lostItem->lostItemDescription->color == $foundItem->foundItemDescription->Color;
-
-    // Example: Compare model
-    $modelMatch = $lostItem->lostItemDescription->model == $foundItem->foundItemDescription->Model;
-
-    // Add more comparisons for other attributes as needed
-
-    // Return true if all comparisons are true
-    return $dateLostMatch && $colorMatch && $modelMatch;
-}
-
+        return redirect()->route('compare_items.index')->with('success', 'Item unconfirmed successfully.');
+    }
 }

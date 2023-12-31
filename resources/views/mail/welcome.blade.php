@@ -1,10 +1,10 @@
 {!! $body !!}
 <x-mail::message>
-# Item found
+# Welcome
  
-Your item has been found!
+Thanks for your registration
  
-<p>you can contact: {{ $finderEmail }} to get your item back</p>
+
 {{-- <x-mail::button >
 View Item
 </x-mail::button> --}}

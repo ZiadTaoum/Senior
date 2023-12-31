@@ -9,14 +9,82 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ asset('style.css') }}">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            button {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .formContainer {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            form {
+                width: 100%;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input,
+            select {
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+
+            .switch-button-container {
+                text-align: center;
+                margin-top: 20px;
+            }
+        </style>
     </head>
 
     <body>
-        <button id="switchFormButton">Switch Form</button>
+        <h1>Report a Found or Lost Item</h1>
+
+        <div class="switch-button-container">
+            <button id="switchFormButton">Switch Form</button>
+        </div>
 
         <div class="formContainer" id="form1Container">
             <div class="container">
-                <h2>Report Found Item </h2>
+                <h2>Report Found Item</h2>
                 <form method="POST" action="{{ route('founditem.store') }}" enctype="multipart/form-data">
                     @csrf
 
@@ -44,12 +112,9 @@
                         </select>
                     </div>
 
-                    {{-- <input type="text" onkeyup="searchCategory(this.value)"> --}}
-
                     <input type="hidden" name="submit_type" value="first_form">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit">Submit</button>
                 </form>
-
             </div>
         </div>
 
@@ -83,7 +148,6 @@
                         </select>
                     </div>
 
-
                     <div class="form-group">
                         <label for="status">Status</label>
                         <input type="text" name="status" class="form-control" required>
@@ -95,17 +159,18 @@
                     </div>
 
                     <input type="hidden" name="submit_type" value="second_form">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit">Submit</button>
                 </form>
             </div>
-                </div>
+        </div>
+
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 var switchFormButton = document.getElementById('switchFormButton');
                 var form1Container = document.getElementById('form1Container');
                 var form2Container = document.getElementById('form2Container');
 
-                switchFormButton.addEventListener('click', function() {
+                switchFormButton.addEventListener('click', function () {
                     form1Container.style.display = form1Container.style.display === 'none' ? 'block' : 'none';
                     form2Container.style.display = form2Container.style.display === 'none' ? 'block' : 'none';
                 });
@@ -114,11 +179,11 @@
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $.ajax({
                     type: 'GET',
                     url: "{{ route('get-categories') }}",
-                    success: function(response) {
+                    success: function (response) {
                         console.log('got categories');
                         console.log(response);
 
@@ -127,19 +192,19 @@
                                 var category = "<option value=" + response.categories[i].id + ">" + response
                                     .categories[i].category_name + "</option>";
                                 $("#lost_item_categories").append(category);
-                                
+
                                 $("#found_item_categories").append(category);
                             }
                         }
                     },
-                    error: function(error) {
+                    error: function (error) {
                         console.error(error);
                     }
                 });
                 $.ajax({
                     type: 'GET',
                     url: "{{ route('get-addresses') }}",
-                    success: function(response) {
+                    success: function (response) {
                         console.log('got addresses');
                         console.log(response);
 
@@ -154,7 +219,7 @@
                             }
                         }
                     },
-                    error: function(error) {
+                    error: function (error) {
                         console.error(error);
                     }
                 });
