@@ -85,9 +85,8 @@
                     <img src="{{ asset('storage/'.$foundItem->image->image_url) }}" alt="Image" class="card-img-top" style="height: 200px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px;">
                     <div class="card-body">
                         <h5 class="card-title">{{ $foundItem->item_name }}</h5>
-                        <p class="card-text"><strong>ID:</strong> {{ $foundItem->id }}</p>
                         <p class="card-text"><strong>Status:</strong> {{ $foundItem->status }}</p>
-                        <p class="card-text"><strong>User:</strong> {{ $foundItem->user->name }}</p>
+                        <p class="card-text"><strong>User:</strong> {{ $foundItem->user->email }}</p>
                         <p class="card-text"><strong>Address:</strong> {{ $foundItem->address->city }}</p>
                         <p class="card-text"><strong>Category:</strong> {{ $foundItem->category->category_name }}</p>
                     </div>

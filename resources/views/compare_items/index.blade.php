@@ -3,6 +3,10 @@
 @section('content')
 
 <style>
+    body {
+        background-color: rgb(255, 255, 255);
+    }
+
     .item-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -38,7 +42,7 @@
     }
 </style>
 
-<div class="container mt-5">
+<div class="container mt-5" style="background-color: #fff">
     <h1 class="mb-4">Unchecked LostFound Items</h1>
 
     <div class="item-grid">

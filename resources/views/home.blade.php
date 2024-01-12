@@ -97,7 +97,6 @@
                 border-radius: 8px;
             }
     
-            /* Additional styles for responsiveness */
             @media (max-width: 768px) {
                 .Left_part, .middle_part, .last_part {
                     margin: 10px 0;
@@ -108,6 +107,7 @@
     .carousel-inner {
         border-radius: 8px;
         overflow: hidden;
+        max-height: 400px; 
     }
 
     .carousel-item {
@@ -117,12 +117,11 @@
 
     .carousel-image {
         width: 100%;
-        max-height: 300px; /* Adjust the maximum height as needed */
+        max-height: 500px; 
         border-radius: 8px;
         object-fit: cover;
     }
 
-    /* Carousel Controls Styles */
     .carousel-control-prev,
     .carousel-control-next {
         width: 5%;

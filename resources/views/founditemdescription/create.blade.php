@@ -75,12 +75,12 @@
 
         <div class="form-group">
             <label for="Color">Color</label>
-            <input type="text" name="Color" class="form-control" required>
+            <input type="text" name="Color" class="form-control" required><small>Be careful with the color name</small>
         </div>
 
         <div class="form-group">
             <label for="Model">Model</label>
-            <input type="text" name="Model" class="form-control" required>
+            <input type="text" name="Model" class="form-control" placeholder="Example: 2015" required>
         </div>
 
         <button type="submit">Submit</button>

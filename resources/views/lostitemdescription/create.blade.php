@@ -76,7 +76,7 @@
 
         <div class="form-group">
             <label for="Color">Color</label>
-            <input type="text" name="color" class="form-control" required>
+            <input type="text" name="color" class="form-control" required><small>Be careful with the color name</small>
         </div>
 
         <div class="form-group">

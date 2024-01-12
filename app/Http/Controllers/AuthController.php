@@ -29,7 +29,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|unique:users',
             'email' => 'required|email|unique:users',
-            'password' => 'required',
+            'password' => 'required|min:5',              //|regex:/^(?=.*[a-z])(?=.*[A-Z])/
         ]);
 
         $user = User::create([

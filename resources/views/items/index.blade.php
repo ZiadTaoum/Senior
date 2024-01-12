@@ -4,6 +4,10 @@
 @section('content')
 
 <style>
+        body {
+        background-color: #fff;
+    }
+
     .item-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -31,16 +35,17 @@
     }
 </style>
     <h1>Lost Items</h1>
-
-    <div class="item-grid">
+    <h2>Welcome, {{ auth()->user()->name }}</h2>
+        <div class="item-grid">
         @foreach ($lostItems as $lostItem)
             <div class="item-card">
                 <img src="{{ asset('storage/'.$lostItem->image->image_url) }}" alt="Image" class="item-image">
                 <div class="item-details">
-                    <p><strong>ID:</strong> {{ $lostItem->id }}</p>
+                    {{-- <p><strong>ID:</strong> {{ $lostItem->id }}</p> --}}
                     <p><strong>Item Name:</strong> {{ $lostItem->item_name }}</p>
                     <p><strong>Status:</strong> {{ $lostItem->status }}</p>
                     <p><strong>User:</strong> {{ $lostItem->user->name }}</p>
+                    <p><strong>Email:</strong> {{ $lostItem->user->email }}</p>
                     <p><strong>Address:</strong> {{ $lostItem->address->city }}</p>
                     <p><strong>Category:</strong> {{ $lostItem->category->category_name }}</p>
                     <p><strong>Reward:</strong> {{ $lostItem->reward ? $lostItem->reward->reward_description : 'N/A' }}</p>
@@ -58,10 +63,11 @@
             <div class="item-card">
                 <img src="{{ asset('storage/'.$foundItem->image->image_url) }}" alt="Image" class="item-image">
                 <div class="item-details">
-                    <p><strong>ID:</strong> {{ $foundItem->id }}</p>
+                    {{-- <p><strong>ID:</strong> {{ $foundItem->id }}</p> --}}
                     <p><strong>Item Name:</strong> {{ $foundItem->item_name }}</p>
                     <p><strong>Status:</strong> {{ $foundItem->status }}</p>
                     <p><strong>User:</strong> {{ $foundItem->user->name }}</p>
+                    <p><strong>Email:</strong> {{ $lostItem->user->email }}</p>
                     <p><strong>Address:</strong> {{ $foundItem->address->city }}</p>
                     <p><strong>Category:</strong> {{ $foundItem->category->category_name }}</p>
                 </div>

@@ -6,8 +6,12 @@
   <title>Registration</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    body {
-      background-color: #f8f9fa;
+     body {
+      background-image: url('images/Document.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
     }
 
     .container {
@@ -53,6 +57,11 @@
   <div class="container">
     <form action="{{ route('registration-post') }}" method="POST">
       @csrf
+      <ul class="navbar-logo">
+        <span>
+                <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" width="200px" height="200px" style="border-radius: 10px;">
+        </span>
+    </ul>
       <div class="mb-3">
         <label class="form-label">Name</label>
         <input type="text" class="form-control" id="name" name="name" required>

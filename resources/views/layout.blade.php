@@ -86,17 +86,18 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('report') }}">Report</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('reviews.index') }}">Reviews</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('gallery') }}">Gallery</a></li>
+                <span style="margin-left: 600px; font-weight: bold; color: white; font-size: 18px;">Hello, {{ auth()->user()->name }}</span>
+           
+                <ul class="logout">
+                    <li>
+                        <a style="margin-left: 200px" class="nav-link" href="{{ route('logout') }}"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                           Logout
+                        </a>
+                    </li>
+                </ul>
             </ul>
-            <!-- Update the logout link -->
-            <ul class="logout">
-                <li>
-                    <a style="margin-left: 1300px" class="nav-link" href="{{ route('logout') }}"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                       Logout
-                    </a>
-                </li>
-            </ul>
-            <!-- Add a form for logout with CSRF protection -->
+
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>

@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
      body {
-      background-image: url('images/lost-and-found.jpg'); /* Replace 'background.jpg' with the actual filename of your image */
+      background-image: url('images/Document.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed; /* Optional: This will make the background fixed while scrolling */
+      background-attachment: fixed; 
     }
 
     .container {
@@ -53,6 +53,11 @@
     @include('components.alert')
     <form action="{{ route('login') }}" method="POST">
       @csrf
+      <ul class="navbar-logo">
+        <span>
+              <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" width="200px" height="200px" style="border-radius: 10px;">
+        </span>
+    </ul>
       <div class="mb-3">  
         <label class="form-label">Email address</label>
         <input type="email" class="form-control" name="email" required>
