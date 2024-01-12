@@ -6,13 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
     @include('components.alert')
 
-    <!-- Add your CSS stylesheets or CDN links here -->
     <style>
         body {
-            margin: 0; /* Remove default body margin */
+            margin: 0; 
+            font-family: 'Arial', sans-serif;
         }
 
         header {
@@ -21,6 +21,11 @@
             align-items: center;
             padding: 10px;
             background-color: #333; /* Add background color for the header */
+            border-bottom: 2px solid #555; /* Add a border at the bottom for separation */
+        }
+
+        .navbar-logo {
+            margin-right: 90%; /* Push the logo to the left */
         }
 
         nav ul {
@@ -31,20 +36,36 @@
             align-items: center;
         }
 
-        .navbar-logo {
-            margin-right: auto; /* Push the logo to the left */
+        .nav-item {
+            margin-right: 15px; 
         }
 
-        nav ul li {
-            margin-right: 20px;
+        .nav-link {
+            text-decoration: none;
+            color: #fff; 
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease; 
         }
 
+        .nav-link:hover {
+            color: #007bff; 
+        }
+/* 
         .logout {
-            margin-left: 200%   ; /* Push the logout button to the right */
-        }
+            margin-left: 90%; 
+        } */
 
         .logout a {
-            color: #fff; /* Change the color of the logout link */
+            color: #fff; 
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease; 
+        }
+
+        .logout a:hover {
+            color: #007bff; 
         }
     </style>
 </head>
@@ -52,22 +73,24 @@
 
     <header>
         <nav>
-            <ul>
-                <li class="navbar-logo">
+            <ul class="navbar-logo">
+                <li>
                     <a href="{{ route('home') }}">
                         <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" width="100px" height="100px" style="border-radius: 10px;">
                     </a>
                 </li>
-                <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('about') }}">About</a></li>
-                <li><a href="{{ route('report') }}">Report</a></li>
-                <li><a href="{{ route('reviews.index') }}">Reviews</a></li>
-                <li><a href="{{ route('gallery') }}">Gallery</a></li>
+            </ul>
+            <ul class="nav-items">
+                <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('report') }}">Report</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('reviews.index') }}">Reviews</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('gallery') }}">Gallery</a></li>
             </ul>
             <!-- Update the logout link -->
             <ul class="logout">
                 <li>
-                    <a href="{{ route('logout') }}"
+                    <a style="margin-left: 1300px" class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                        Logout
                     </a>

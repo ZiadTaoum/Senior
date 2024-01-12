@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/app.blade.php -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +17,6 @@
             <li><a href="{{ route('items.index') }}">Items</a></li>
             <li><a href="{{ route('compare_items.index') }}">Compare</a></li>
                 <li><a href="{{ route('adminReview.index') }}">Reviews</a></li>
-                {{-- <li><a href="{{ route('gallery') }}">Gallery</a></li> --}}
             </ul>
             <ul class="logout">
                 <li>

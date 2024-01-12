@@ -45,6 +45,12 @@ class CompareItems extends Command
                     if(! $found_item->category->match($lost_item->category)){
                         continue;
                     }
+                    if (
+                        $found_item->foundItemDescriptions->isEmpty() ||
+                        $lost_item->lostItemDescriptions->isEmpty()
+                    ) {
+                        continue;
+                    }
                     if($found_item->foundItemDescriptions[0]->color != $lost_item->lostItemDescriptions[0]->color){
                         continue;
                     }

@@ -287,12 +287,12 @@ nav ul li a:hover {
     background-color: #555;
 }
 
-.logout {
-    margin-left: 260%; /* Push the logout button to the right */
-}
+/* .logout {
+    margin-left: 90%; 
+} */
 
 .logout a {
-    padding: 12px 15px; /* Increased padding for better spacing */
+    padding: 12px 15px; 
     border-radius: 5px;
     background-color: orangered;
     color: #fff;
